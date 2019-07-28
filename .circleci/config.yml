@@ -63,6 +63,12 @@ jobs:
           key: dist-{{ .Revision }}
 
       - run:
+          name: Set git user info
+          command: |
+            git config user.name $GIT_USER_NAME
+            git config user.email $GIT_USER_EMAIL
+
+      - run:
           name: Deploy to gh-pages
           command: yarn deploy
 
@@ -80,6 +86,7 @@ workflows:
       - deploy:
           requires:
             - build
+            - test
           filters:
             branches:
               only: master
