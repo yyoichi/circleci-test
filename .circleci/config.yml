@@ -2,7 +2,8 @@ version: 2
 
 jobs:
   startup:
-    docker: circleci/node:latest
+    docker:
+      - image: circleci/node:latest
     steps:
       - checkout
 
@@ -11,7 +12,8 @@ jobs:
           command: yarn install
 
   build:
-    docker: circleci/node:latest
+    docker:
+      - image: circleci/node:latest
     steps:
       - run:
           name: Install dependencies
@@ -21,13 +23,15 @@ jobs:
           name: Build for production
           command: yarn build:production
   test:
-    docker: circleci/node:latest
+    docker:
+      - image: circleci/node:latest
     steps:
       - run:
           name: Test
           command: yarn test
   deploy:
-    docker: circleci/node:latest
+    docker:
+      - image: circleci/node:latest
     steps:
       - run:
           name: Deploy to gh-pages
