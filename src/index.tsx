@@ -1,22 +1,11 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { render } from 'react-dom';
+import {Todo} from './domain/todo';
+import AddTodo from './modules/AddTodo/AddTodo';
+import TodoList from './modules/TodoList/TodoList';
+import TodoListItem from './modules/TodoListItem/TodoListItem';
+import {generateId} from './utils';
 import styles from './index.css';
-
-const generateId = () => {
-  return (
-    Math.random()
-      .toString(36)
-      .substring(2, 12) +
-    Math.random()
-      .toString(36)
-      .substring(2, 12)
-  );
-};
-
-interface Todo {
-  id: string;
-  value: string;
-}
 
 const App = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -56,64 +45,11 @@ const App = () => {
   return (
     <div className={styles.app}>
       <AddTodo addTodo={addTodo} />
-      <TodoList todos={todos} deleteTodo={deleteTodo} />
-    </div>
-  );
-};
-
-const AddTodo = ({ addTodo }: { addTodo: (value: string) => void }) => {
-  const input = useRef<HTMLInputElement>();
-  const onAddClick = useCallback(() => {
-    const value = input.current.value;
-    if (value) {
-      addTodo(input.current.value);
-      input.current.value = '';
-    }
-  }, [addTodo]);
-
-  return (
-    <div className={styles.addTodo}>
-      <input className={styles.addTodoForm} type="text" ref={input} />
-      <button className={styles.addTodoButton} onClick={onAddClick}>
-        Add
-      </button>
-    </div>
-  );
-};
-
-const TodoList = ({
-  todos,
-  deleteTodo
-}: {
-  todos: Todo[];
-  deleteTodo: (id: string) => void;
-}) => {
-  return (
-    <div className={styles.todoList}>
-      {todos.map(todo => (
-        <TodoListItem todo={todo} deleteTodo={deleteTodo} key={todo.id} />
-      ))}
-    </div>
-  );
-};
-
-const TodoListItem = ({
-  todo,
-  deleteTodo
-}: {
-  todo: Todo;
-  deleteTodo: (id: string) => void;
-}) => {
-  const onDeleteClick = useCallback(() => {
-    deleteTodo(todo.id);
-  }, [todo.id, deleteTodo]);
-
-  return (
-    <div className={styles.todoListItem} key={todo.id}>
-      {todo.value}
-      <button className={styles.todoDeleteButton} onClick={onDeleteClick}>
-        ×
-      </button>
+      <TodoList>
+        {todos.map(todo => (
+          <TodoListItem todo={todo} deleteTodo={deleteTodo} key={todo.id} />
+        ))}
+      </TodoList>
     </div>
   );
 };

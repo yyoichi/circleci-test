@@ -1,0 +1,19 @@
+.addTodo {
+  margin: 32px 0;
+  display: flex;
+  align-items: bottom;
+}
+
+.addTodoForm {
+  border: none;
+  border-bottom: 1px solid #a0a0a0;
+  margin: 0 5px;
+  outline: none;
+}
+
+.addTodoButton {
+  background-color: transparent;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  border: 1px solid #a0a0a0;
+}
