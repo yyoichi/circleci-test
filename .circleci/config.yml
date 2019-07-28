@@ -1,11 +1,18 @@
 version: 2
 
 jobs:
-  build:
+  startup:
     docker: circleci/node:latest
     steps:
       - checkout
 
+      - run:
+          name: Install dependencies
+          command: yarn install
+
+  build:
+    docker: circleci/node:latest
+    steps:
       - run:
           name: Install dependencies
           command: yarn install
@@ -30,8 +37,13 @@ workflows:
   version: 2
   build_test_deploy:
     jobs:
-      - build
-      - test
+      - startup
+      - build:
+          requires:
+            - startup
+      - test:
+          requires:
+            - startup
       - deploy:
           requires:
             - build
