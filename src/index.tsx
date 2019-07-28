@@ -4,18 +4,8 @@ import {Todo} from './domain/todo';
 import AddTodo from './modules/AddTodo/AddTodo';
 import TodoList from './modules/TodoList/TodoList';
 import TodoListItem from './modules/TodoListItem/TodoListItem';
+import {generateId} from './utils';
 import styles from './index.css';
-
-const generateId = () => {
-  return (
-    Math.random()
-      .toString(36)
-      .substring(2, 12) +
-    Math.random()
-      .toString(36)
-      .substring(2, 12)
-  );
-};
 
 const App = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
