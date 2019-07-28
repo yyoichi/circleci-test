@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addTodo {
+  margin: 32px 0;
+  display: flex;
+  align-items: bottom;
+}
+
+.addTodoForm {
+  border: none;
+  border-bottom: 1px solid #a0a0a0;
+  margin: 0 5px;
+  outline: none;
+}
+
+.addTodoButton {
+  background-color: transparent;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  border: 1px solid #a0a0a0;
+}
+
+.todoList {
+  width: 800px;
+}
+
+.todoListItem {
+  background-color: #f0f0f0;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: padding .1s linear;
+}
+
+.todoListItem:hover {
+  padding: 20px 15px;
+}
+
+.todoListItem:nth-child(2n) {
+  background-color: #fafafafa;
+}
+
+.todoDeleteButton {
+  display: none;
+  border: 1px solid #a00000;
+  background-color: transparent;
+  border-radius: 4px;
+  color: #a00000;
+  width: 30px;
+  height: 30px;
+}
+
+.todoListItem:hover .todoDeleteButton {
+  display: block;
+}
