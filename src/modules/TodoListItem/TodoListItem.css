@@ -1,0 +1,30 @@
+.todoListItem {
+  background-color: #f0f0f0;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: padding 0.1s linear;
+}
+
+.todoListItem:hover {
+  padding: 20px 15px;
+}
+
+.todoListItem:nth-child(2n) {
+  background-color: #fafafafa;
+}
+
+.todoDeleteButton {
+  display: none;
+  border: 1px solid #a00000;
+  background-color: transparent;
+  border-radius: 4px;
+  color: #a00000;
+  width: 30px;
+  height: 30px;
+}
+
+.todoListItem:hover .todoDeleteButton {
+  display: block;
+}
